@@ -1,0 +1,14 @@
+PROJECT NOTES PSUEDOCODE
+
+SETUP(
+	variables etc
+	)
+	
+LOOP(
+	constantly check for voice input, if it recognises "one shield" or something
+	code to recognise a phrase: 
+	voiceCommand = VoiceRecognition.getLastCommand();
+    if(strstr(voiceCommand,"one shield") != NULL){
+		// do stuff
+	}
+	if "one shield" is heard, run the if
