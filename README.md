@@ -5,10 +5,15 @@ PROJECT NOTES / TODO
 	The following core functionality should be included:  
  
 HOME: 
+
 	- Home assistant features: 
+	
 		o Tell the current time DONE
+		
 		o Tell the current weather conditions 
+		
 		o Play Music (Probably wont bother with this)
+		
 	- Home automation features (can be simulated through switching on and off LEDs on breadboard) 
 		o Switch lights on / off (this feature may be simulated using LEDs) -  i hate setting up LEDS, not gonna bother
 		o Switch heating on / off (this feature may be simulated using LEDs) 
