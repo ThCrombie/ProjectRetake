@@ -24,22 +24,31 @@ void setup()
 }
 
 void loop(){
+  Clock.queryDateAndTime(); // start the clock_shield each loop
+  
   hour = Clock.getHours();
   minute = Clock.getMinutes();
   stringHour = String(hour);
   stringMinute = String(minute);
+
+  
   
   /* Always check if a new voice command received. */ 
   if(VoiceRecognition.isNewCommandReceived()){
     /* Check if the voice command is the desired one. */
     if(!strcmp(firstCommand,VoiceRecognition.getLastCommand())){
       TextToSpeech.say("The time is...");
-      printf("%d hour %d minute/n", &stringHour, &stringMinute);
-      delay(500);
-      TextToSpeech.say(stringHour);
       delay(300);
+      TextToSpeech.say(stringHour);
+      delay(200);
       TextToSpeech.say(stringMinute);
-      TextToSpeech.say(" P M");
+      // if it's 12 (digital) or later, say PM, else it's AM.
+      delay(100);
+      if(hour >= 12){
+        TextToSpeech.say(" P M");
+        } else{
+          TextToSpeech.say(" A M");
+  }
      }
      /* Check if the voice command is the desired one. */
      else if(!strcmp(secondCommand,VoiceRecognition.getLastCommand()))
