@@ -13,7 +13,7 @@ HOME:
 		o Play Music (Probably wont bother with this)
 		
 	- Home automation features (can be simulated through switching on and off LEDs on breadboard) 
-		o Switch lights on / off (this feature may be simulated using LEDs) -  i hate setting up LEDS, not gonna bother
+		o Switch lights on / off (this feature may be simulated using LEDs)
 		o Switch heating on / off (this feature may be simulated using LEDs) 
 		o Remote Camera  - Interactive services features 
 		o Order Take way 
@@ -34,5 +34,5 @@ SECURITY:
  
 CUSTOM FEATURE: - Custom designed feature unique to your project  (which has not already been outlined in this spec).
 	
-	o randomise the responses - simply random pick 3 TTS replies, different wording etc
-	o same as above, but for user input?  (what is the time / what time is it / how late is it / etc)
+	o randomise the responses - WORKING (for telling the time only)
+	o same as above, but for user input?  WORKING (for telling the time only)
