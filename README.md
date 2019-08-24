@@ -14,11 +14,11 @@ HOME:
 		
 	- Home automation features (can be simulated through switching on and off LEDs on breadboard) 
 		o Switch lights on / off (this feature may be simulated using LEDs) DONE
-		o Switch heating on / off (this feature may be simulated using LEDs) 
+		o Switch heating on / off (this feature may be simulated using LEDs) DONE
 		o Remote Camera  - Interactive services features 
 		o Order Take way 
 		o Order shopping 
-		o Order taxi 
+		o Order taxi DONE
 MEDICAL: 
 
 	o Multi-level memory game -- maybe do this thru TTS?
@@ -34,5 +34,6 @@ SECURITY:
  
 CUSTOM FEATURE: - Custom designed feature unique to your project  (which has not already been outlined in this spec).
 	
-	o randomise the responses - WORKING (for telling the time only)
-	o same as above, but for user input?  WORKING (for telling the time only)
+	o randomise the responses - WORKING 
+	o same as above, but for user input?  WORKING 
+		WORKS FOR BOTH: TELLING THE TIME, AND ORDING TAXI
