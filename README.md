@@ -9,11 +9,11 @@ HOME:
 
 	- Home assistant features: 
 		o Tell the current time DONE
-		o Tell the current weather conditions 
+		o Tell the current weather conditions (Doesnt seem to succeed or fail. I cant debug this)
 		o Play Music (Probably wont bother with this)
 		
 	- Home automation features (can be simulated through switching on and off LEDs on breadboard) 
-		o Switch lights on / off (this feature may be simulated using LEDs)
+		o Switch lights on / off (this feature may be simulated using LEDs) DONE
 		o Switch heating on / off (this feature may be simulated using LEDs) 
 		o Remote Camera  - Interactive services features 
 		o Order Take way 
