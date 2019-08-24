@@ -15,11 +15,26 @@
 */
 HttpRequest request1("http://api.openweathermap.org/data/2.5/weather?q=Cork,IE&appid=43d95b4cf5d0573e2dfe5186c160017a");
 
+// the two commands you can use to get the time
 const char timeCommand[]="what time is it";
 const char timeCommandSecond[]="how late is it";
+
+// the command to get the weather (broken)
 const char weathCommand[]="what is the weather like";
+
+// command to turn lights on/off
 const char lightsOnCommand[]="lights on";
 const char lightsOffCommand[]="lights off";
+
+// command to turn heating on/off
+const char heatOnCommand[]="heating on";
+const char heatOffCommand[]="heating off";
+
+// commands to order a taxi
+const char taxiCommand[]="can i get a taxi";
+const char taxiCommandSecond[]="could you order me a taxi";
+const char taxiCommandThird[]="i need a taxi";
+
 
 char b[12];
 char c[12];
@@ -37,7 +52,9 @@ void setup()
   request1.getResponse().setOnError(&onResponseError);
 
   // leds (lights, heat, 'ordering food' etc)
-  pinMode(13, OUTPUT);  // pin 13 - lights (green led)
+  pinMode(13, OUTPUT);  // pin 13 - lights (white led)
+  pinMode(12, OUTPUT);  // pin 12 - heating (green led)
+  pinMode(8, OUTPUT);  // pin 12 - taxi (red led)
   
 }
 
@@ -99,6 +116,57 @@ void loop(){
       TextToSpeech.say("lights turned off");
       digitalWrite(13, LOW);
      }
+     else if(!strcmp(heatOnCommand,VoiceRecognition.getLastCommand()))
+     {
+      delay(500);
+      TextToSpeech.say("heating turned on");
+      digitalWrite(12, HIGH);
+     }
+     // turn off lights
+     else if(!strcmp(heatOffCommand,VoiceRecognition.getLastCommand()))
+     {
+      delay(500);
+      TextToSpeech.say("heating turned off");
+      digitalWrite(12, LOW);
+     }
+     // 'order a taxi' and blink led a few times
+     else if(!strcmp(taxiCommand,VoiceRecognition.getLastCommand()) || !strcmp(taxiCommandSecond,VoiceRecognition.getLastCommand()) || !strcmp(taxiCommandThird,VoiceRecognition.getLastCommand()))
+     {
+      reply = rand() % (2 + 1 - 0) + 0; 
+      delay(500);
+      if(reply == 0 ){
+        TextToSpeech.say("calling a taxi for you...");
+      }else if (reply == 1){
+        TextToSpeech.say("finding you a taxi...");
+      }else{
+        TextToSpeech.say("i'll search for a taxi now...");
+      }
+      
+      
+      
+      delay(1000);
+      digitalWrite(8, HIGH);
+      delay(500);
+      digitalWrite(8, LOW);
+      delay(500);
+      digitalWrite(8, HIGH);
+      delay(500);
+      digitalWrite(8, LOW);
+      delay(500);
+      digitalWrite(8, HIGH);
+      delay(500);
+      digitalWrite(8, LOW);
+      delay(500);
+      digitalWrite(8, HIGH);
+      delay(500);
+      digitalWrite(8, LOW);
+      delay(500);
+      digitalWrite(8, HIGH);
+      delay(500);
+      digitalWrite(8, LOW);
+      delay(200);
+      TextToSpeech.say("The taxi will be there shortly.");
+     }
      else
      {
        // if Voice Recognition cant understand it will let the user know
@@ -110,6 +178,7 @@ void loop(){
 
 void onSuccess1(HttpResponse & response1)
 {
+  // code from the Alexa example: 
   
   /* Using the response to query the Json chain till the required value. */
   /* i.e. Get the value of 'main' in the first object of the array 'weather' in the response. */
