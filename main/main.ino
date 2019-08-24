@@ -17,8 +17,9 @@ HttpRequest request1("http://api.openweathermap.org/data/2.5/weather?q=Cork,IE&a
 
 const char timeCommand[]="what time is it";
 const char timeCommandSecond[]="how late is it";
-const char secondCommand[]="what is the weather like";
-const char thirdCommand[]="turn on";
+const char weathCommand[]="what is the weather like";
+const char lightsOnCommand[]="lights on";
+const char lightsOffCommand[]="lights off";
 
 char b[12];
 char c[12];
@@ -34,6 +35,10 @@ void setup()
   //Internet.performGet(request1);
   request1.getResponse().setOnJsonResponse(&onJsonReply1);
   request1.getResponse().setOnError(&onResponseError);
+
+  // leds (lights, heat, 'ordering food' etc)
+  pinMode(13, OUTPUT);  // pin 13 - lights (green led)
+  
 }
 
 void loop(){
@@ -71,20 +76,28 @@ void loop(){
   }
      }
      // reply if asked about the weather
-     else if(!strcmp(secondCommand,VoiceRecognition.getLastCommand()))
+     else if(!strcmp(weathCommand,VoiceRecognition.getLastCommand()))
      {
        /* 1Sheeld responds using text-to-speech. */
        TextToSpeech.say("Checking...");
        //Terminal.println("Doing Internet.PerformGet...");
        Internet.performGet(request1);
-       TextToSpeech.say("Sent request for data.");
+       TextToSpeech.say("Sent request for weather data.");
        
      }
-     // WIP reply
-     else if(!strcmp(thirdCommand,VoiceRecognition.getLastCommand()))
+     // turn on lights
+     else if(!strcmp(lightsOnCommand,VoiceRecognition.getLastCommand()))
      {
-       
-       TextToSpeech.say("led turned on");
+      delay(500);
+      TextToSpeech.say("lights turned on");
+      digitalWrite(13, HIGH);
+     }
+     // turn off lights
+     else if(!strcmp(lightsOffCommand,VoiceRecognition.getLastCommand()))
+     {
+      delay(500);
+      TextToSpeech.say("lights turned off");
+      digitalWrite(13, LOW);
      }
      else
      {
