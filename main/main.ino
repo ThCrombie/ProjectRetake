@@ -35,17 +35,20 @@ const char taxiCommand[]="can i get a taxi";
 const char taxiCommandSecond[]="could you order me a taxi";
 const char taxiCommandThird[]="i need a taxi";
 
-
+// char arrays if needed
 char b[12];
 char c[12];
+// these vars are used when getting the time from the phone, and used with the text to speech
 int hour, minute;
 String stringHour, stringMinute;
 
+// declaring an int used when randomly picking a number from 0 to 2
 int reply;
 
 void setup()
 {
   OneSheeld.begin();
+  // Internet Shield code:
   request1.setOnSuccess(&onSuccess1);
   //Internet.performGet(request1);
   request1.getResponse().setOnJsonResponse(&onJsonReply1);
@@ -53,8 +56,8 @@ void setup()
 
   // leds (lights, heat, 'ordering food' etc)
   pinMode(13, OUTPUT);  // pin 13 - lights (white led)
-  pinMode(12, OUTPUT);  // pin 12 - heating (green led)
-  pinMode(8, OUTPUT);  // pin 12 - taxi (red led)
+  pinMode(12, OUTPUT);  // pin 12 - heating (red led)
+  pinMode(8, OUTPUT);  // pin 12 - taxi (green led)
   
 }
 
@@ -81,9 +84,9 @@ void loop(){
       }
       
       delay(300);
-      TextToSpeech.say(stringHour);
+      TextToSpeech.say(stringHour); // say the hour in a digital clock format
       delay(200);
-      TextToSpeech.say(stringMinute);
+      TextToSpeech.say(stringMinute); // say the minutes
       // if it's 12 (digital) or later, say PM, else it's AM.
       delay(100);
       if(hour >= 12){
@@ -92,7 +95,7 @@ void loop(){
           TextToSpeech.say(" A M");
   }
      }
-     // reply if asked about the weather
+     // reply if asked about the weather (broken)
      else if(!strcmp(weathCommand,VoiceRecognition.getLastCommand()))
      {
        /* 1Sheeld responds using text-to-speech. */
@@ -175,7 +178,7 @@ void loop(){
      }
    }
 }
-
+// internet shield query:
 void onSuccess1(HttpResponse & response1)
 {
   // code from the Alexa example: 
@@ -203,7 +206,7 @@ void onJsonReply1(JsonKeyChain & hell,char * output)
        TextToSpeech.say("Unable to get weather data.");
     }*/
 }
-
+// this doesnt even happen?
 void onResponseError(int errorNumber)
 {
   //hour = errorNumber;
